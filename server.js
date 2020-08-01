@@ -28,7 +28,16 @@ db.connect((err) => {
 //     })
 // })
 
+// Create Table
+app.get('/create_table', (req, res) => {
+    let sql = 'CREATE TABLE products(product_id INT AUTO_INCREMENT, product_name VARCHAR(20), product_price DECIMAL(7, 2), product_sizes, product_colors, product_stock INT)'
 
+    db.query(sql, (err, result) => {
+        if (err) throw err
+        console.log(result)
+        res.send('Table Created...')
+    })
+})
 
 
 
