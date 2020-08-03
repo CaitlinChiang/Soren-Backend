@@ -3,7 +3,7 @@ const mysql   = require('mysql')
 
 const app = express();
 
-app.listen('3000', () => console.log('Server on Port 3000'))
+app.listen('5000', () => console.log('Server on Port 5000'))
 
 
 
@@ -63,8 +63,7 @@ app.get('/createTable_products', (req, res) => {
 
                                 PRIMARY KEY(product_id),
 
-                                FOREIGN KEY(category_id)
-                                REFERENCES Product_Categories(category_id)
+                                FOREIGN KEY(category_id)  REFERENCES Product_Categories(category_id)  ON DELETE CASCADE ON UPDATE CASCADE
                             )`
 
     databaseTable_viewAction(sql, res)
@@ -80,7 +79,7 @@ app.get('/createTable_productDetails', (req, res) => {
 
                                 PRIMARY KEY(detail_id),
 
-                                FOREIGN KEY(product_id)  REFERENCES Products(product_id)
+                                FOREIGN KEY(product_id)  REFERENCES Products(product_id)  ON DELETE CASCADE ON UPDATE CASCADE
                             )`
 
     databaseTable_viewAction(sql, res)
@@ -134,23 +133,37 @@ app.get('/createTable_orders', (req, res) => {
 
                                 PRIMARY KEY(order_id),
 
-                                FOREIGN KEY(city_id)     REFERENCES City_Deliveries(city_id),
-                                FOREIGN KEY(payment_id)  REFERENCES Payment_Mediums(payment_id),
-                                FOREIGN KEY(status_id)   REFERENCES Order_Statu(status_id)
+                                FOREIGN KEY(city_id)     REFERENCES City_Deliveries(city_id)     ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(payment_id)  REFERENCES Payment_Mediums(payment_id)  ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(status_id)   REFERENCES Order_Status(status_id)      ON DELETE CASCADE ON UPDATE CASCADE
                             )`
 
     databaseTable_viewAction(sql, res)
 })
 
 // Read / View Database Table
-app.get('/viewTable', (req, res) => {
+app.get('/viewTables', (req, res) => {
     let sql = 'SHOW TABLES'
 
     databaseTable_viewAction(sql, res)
 })
 
-app.get('/viewTableColumn', (req, res) => {
-    let sql = 'DESCRIBE Products'
+app.get('/viewTableColumns', (req, res) => {
+    let sql = 'DESCRIBE Orders'
+
+    databaseTable_viewAction(sql, res)
+})
+
+app.get('/viewTableContents', (req, res) => {
+    let sql = 'SELECT * FROM Products'
+
+    // let sql = `SELECT * FROM Product_Categories
+    //            WHERE category_id = 1 OR category_id = 2
+    //            ORDER BY category_name DESC`
+
+    // let sql = `SELECT Product_Categories.category_name 
+    //            AS category
+    //            FROM Product_Categories`
 
     databaseTable_viewAction(sql, res)
 })
@@ -158,7 +171,7 @@ app.get('/viewTableColumn', (req, res) => {
 // Update Database Table
 app.get('/addTableColumn', (req, res) => {
     let sql = `ALTER TABLE products 
-               ADD image VARCHAR(10)`
+               ADD COLUMN image VARCHAR(10) NOT NULL`
 
     databaseTable_viewAction(sql, res)
 })
@@ -168,6 +181,19 @@ app.get('/deleteTableColumn', (req, res) => {
                DROP COLUMN image`
 
     databaseTable_viewAction(sql, res)
+})
+
+app.get('/updateTableColumnData', (req, res) => {
+    let sql = `UPDATE Product_Categories
+               SET    category_name = 'Shirts'
+               WHERE  category_name = 'Masks'`
+
+    databaseTable_viewAction(sql, res)
+})
+
+app.get('/deleteTableColumnData', (req, res) => {
+    let sql = `DELETE FROM Product_Categories 
+               WHERE category_name <> 'Shirts' OR category_name <> 'Masks'`
 })
 
 // Delete Database Table
