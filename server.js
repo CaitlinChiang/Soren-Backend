@@ -246,7 +246,7 @@ app.get('/addData_paymentMediums', (req, res) => {
     let sql      = 'INSERT INTO Payment_Mediums SET ?'
 
     let category =  { 
-                        payment_method: 'Cash on Delivery'
+                        payment_method: 'BDO Fund Transfer'
                     }
 
     let query    = databaseData_getQuery(sql, category, res)
@@ -272,7 +272,7 @@ app.get('/addData_orders', (req, res) => {
 
 // Read Data from Database Table
 app.get('/viewData', (req, res) => {
-    let sql = 'SELECT * FROM Orders'
+    let sql = 'SELECT * FROM Payment_Mediums'
 
     // let sql = `SELECT * FROM Product_Categories
     //            WHERE category_id = 1 OR category_id = 2
@@ -285,6 +285,13 @@ app.get('/viewData', (req, res) => {
     database_viewAction(sql, res)
 })
 
+app.get('/viewData/:id', (req, res) => {
+    let sql   = `SELECT * FROM Payment_Mediums 
+                 WHERE payment_id = ${req.params.id}`
+
+    let query = database_viewAction(sql, res)
+})
+
 // Update Data from Database Table
 app.get('/updateData', (req, res) => {
     let sql = `UPDATE Product_Categories
@@ -294,10 +301,25 @@ app.get('/updateData', (req, res) => {
     database_viewAction(sql, res)
 })
 
+app.get('/updateData/:id', (req, res) => {
+    let sql   = `UPDATE Payment_Mediums
+                 SET    payment_method = 'BPI Fund Transfer'
+                 WHERE  payment_id     = ${req.params.id}`
+
+    let query = database_viewAction(sql, res)
+})
+
 // Delete Data from Database Table
 app.get('/deleteData', (req, res) => {
     let sql = `DELETE FROM Orders 
                WHERE order_id > 1 AND order_id < 5`
 
     database_viewAction(sql, res)
+})
+
+app.get('/deleteData/:id', (req, res) => {
+    let sql   = `DELETE FROM Payment_Mediums 
+                 WHERE payment_id = ${req.params.id}`
+
+    let query = database_viewAction(sql, res)
 })
