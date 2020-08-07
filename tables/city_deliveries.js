@@ -25,14 +25,14 @@ router.get('/', (req, res) => {
 
 
 // Update City Deliveries Columns
-app.get('/addColumn', (req, res) => {
+router.get('/addColumn', (req, res) => {
     let sql = `ALTER TABLE City_Deliveries 
                ADD COLUMN image VARCHAR(10) NOT NULL`
 
     database_viewAction(db, sql, res)
 })
 
-app.get('/deleteColumn', (req, res) => {
+router.get('/deleteColumn', (req, res) => {
     let sql = `ALTER TABLE City_Deliveries 
                DROP COLUMN image`
 
@@ -41,7 +41,7 @@ app.get('/deleteColumn', (req, res) => {
 
 
 // Delete City Deliveries Table
-app.get('/delete', (req, res) => {
+router.get('/delete', (req, res) => {
     let sql = 'DROP TABLE City_Deliveries'
 
     database_viewAction(db, sql, res)

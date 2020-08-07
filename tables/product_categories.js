@@ -25,14 +25,14 @@ router.get('/', (req, res) => {
 
 
 // Update Product Categories Columns
-app.get('/addColumn', (req, res) => {
+router.get('/addColumn', (req, res) => {
     let sql = `ALTER TABLE Product_Categories 
                ADD COLUMN image VARCHAR(10) NOT NULL`
 
     database_viewAction(db, sql, res)
 })
 
-app.get('/deleteColumn', (req, res) => {
+router.get('/deleteColumn', (req, res) => {
     let sql = `ALTER TABLE Product_Categories 
                DROP COLUMN image`
 
@@ -41,7 +41,7 @@ app.get('/deleteColumn', (req, res) => {
 
 
 // Delete Product Categories Table
-app.get('/delete', (req, res) => {
+router.get('/delete', (req, res) => {
     let sql = 'DROP TABLE Product_Categories'
 
     database_viewAction(db, sql, res)

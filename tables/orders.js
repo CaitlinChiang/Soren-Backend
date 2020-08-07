@@ -37,14 +37,14 @@ router.get('/', (req, res) => {
 
 
 // Update Orders Columns
-app.get('/addColumn', (req, res) => {
+router.get('/addColumn', (req, res) => {
     let sql = `ALTER TABLE Orders 
                ADD COLUMN image VARCHAR(10) NOT NULL`
 
     database_viewAction(db, sql, res)
 })
 
-app.get('/deleteColumn', (req, res) => {
+router.get('/deleteColumn', (req, res) => {
     let sql = `ALTER TABLE Orders 
                DROP COLUMN image`
 
@@ -53,7 +53,7 @@ app.get('/deleteColumn', (req, res) => {
 
 
 // Delete Orders Table
-app.get('/delete', (req, res) => {
+router.get('/delete', (req, res) => {
     let sql = 'DROP TABLE Orders'
 
     database_viewAction(db, sql, res)
