@@ -3,7 +3,8 @@ const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
 
-router.get('/', (req, res) => {
+// Create Product Details Table
+router.get('/add', (req, res) => {
     let sql = `CREATE TABLE Product_Details( 
                                 detail_id        INT          AUTO_INCREMENT,
                                 product_id       INT          NOT NULL,
@@ -18,5 +19,38 @@ router.get('/', (req, res) => {
 
     database_viewAction(db, sql, res)
 })
+
+
+// View Product Details Table Column Headers
+router.get('/', (req, res) => {
+    let sql = 'DESCRIBE Product_Details'
+
+    database_viewAction(db, sql, res)
+})
+
+
+// Update Product Details Columns
+app.get('/addColumn', (req, res) => {
+    let sql = `ALTER TABLE Product_Details 
+               ADD COLUMN image VARCHAR(10) NOT NULL`
+
+    database_viewAction(db, sql, res)
+})
+
+app.get('/deleteColumn', (req, res) => {
+    let sql = `ALTER TABLE Product_Details 
+               DROP COLUMN image`
+
+    database_viewAction(db, sql, res)
+})
+
+
+// Delete Product Details Table
+app.get('/delete', (req, res) => {
+    let sql = 'DROP TABLE Product_Details'
+
+    database_viewAction(db, sql, res)
+})
+
 
 module.exports = router
