@@ -15,13 +15,15 @@ router.get('/add', (req, res) => {
                                 order_date        DATE          NOT NULL,
                                 payment_id        INT           NOT NULL,
                                 order_timestamp   TIMESTAMP     NOT NULL,
-                                status_id         INT           NOT NULL,
+                                orderStatus_id    INT           NOT NULL,
+                                paymentStatus_id  INT           NOT NULL,
 
                                 PRIMARY KEY(order_id),
 
-                                FOREIGN KEY(city_id)     REFERENCES City_Deliveries(city_id)     ON DELETE CASCADE ON UPDATE CASCADE,
-                                FOREIGN KEY(payment_id)  REFERENCES Payment_Mediums(payment_id)  ON DELETE CASCADE ON UPDATE CASCADE,
-                                FOREIGN KEY(status_id)   REFERENCES Order_Status(status_id)      ON DELETE CASCADE ON UPDATE CASCADE
+                                FOREIGN KEY(city_id)           REFERENCES City_Deliveries(city_id)          ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(payment_id)        REFERENCES Payment_Mediums(payment_id)       ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(orderStatus_id)    REFERENCES Order_Status(orderStatus_id)      ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(paymentStatus_id)  REFERENCES Payment_Status(paymentStatus_id)  ON DELETE CASCADE ON UPDATE CASCADE
                             )`
 
     database_viewAction(db, sql, res)

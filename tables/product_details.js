@@ -10,7 +10,6 @@ router.get('/add', (req, res) => {
                                 product_id       INT          NOT NULL,
                                 detail_size      VARCHAR(5)   NOT NULL,
                                 deatil_color     VARCHAR(15)  NOT NULL,
-                                available_stock  INT          NOT NULL,
 
                                 PRIMARY KEY(detail_id),
 
@@ -39,7 +38,7 @@ router.get('/addColumn', (req, res) => {
 
 router.get('/deleteColumn', (req, res) => {
     let sql = `ALTER TABLE Product_Details 
-               DROP COLUMN image`
+               DROP COLUMN available_stock`
 
     database_viewAction(db, sql, res)
 })

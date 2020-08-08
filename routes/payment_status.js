@@ -3,47 +3,47 @@ const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
 
-// Create Order Status
+// Create Payment Status
 router.get('/add', (req, res) => {
-    let sql      = 'INSERT INTO Order_Status SET ?'
+    let sql      = 'INSERT INTO Payment_Status SET ?'
 
     let category =  { 
-                        orderStatus_label: 'Ready'
+                        paymentStatus_label: 'Ready'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
 })
 
 
-// View Order Status
+// View Payment Status
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM Order_Status`
+    let sql   = `SELECT * FROM Payment_Status`
 
     let query = database_viewAction(db, sql, res)
 })
 
 router.get('/:id', (req, res) => {
-    let sql   = `SELECT * FROM Order_Status
-                 WHERE orderStatus_id = ${req.params.id}`
+    let sql   = `SELECT * FROM Payment_Status
+                 WHERE paymentStatus_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
-// Update Order Status
+// Update Payment Status
 router.get('/update/:id', (req, res) => {
-    let sql   = `UPDATE Order_Status
-                 SET    orderStatus_label = 'Remove'
-                 WHERE  orderStatus_id    = ${req.params.id}`
+    let sql   = `UPDATE Payment_Status
+                 SET    paymentStatus_label = 'Remove'
+                 WHERE  paymentStatus_id    = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
-// Delete Order Status
+// Delete Payment Status
 router.get('/delete/:id', (req, res) => {
-    let sql   = `DELETE FROM Order_Status 
-                 WHERE orderStatus_id = ${req.params.id}`
+    let sql   = `DELETE FROM Payment_Status 
+                 WHERE paymentStatus_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
