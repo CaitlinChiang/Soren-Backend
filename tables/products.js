@@ -6,16 +6,16 @@ require('../tools/visualizeData')()
 // Create Products Table
 router.get('/add', (req, res) => {
     let sql = `CREATE TABLE Products( 
-                                product_id     INT             AUTO_INCREMENT,
-                                category_id    INT             NOT NULL,
-                                product_name   VARCHAR(20)     NOT NULL, 
-                                product_price  DECIMAL(10, 2)  NOT NULL,
-                                stock_id       INT             NOT NULL,
+                                product_id      INT             AUTO_INCREMENT,
+                                category_id     INT             NOT NULL,
+                                product_name    VARCHAR(20)     NOT NULL, 
+                                product_price   DECIMAL(10, 2)  NOT NULL,
+                                stockStatus_id  INT             NOT NULL,
 
                                 PRIMARY KEY(product_id),
 
-                                FOREIGN KEY(category_id)  REFERENCES Product_Categories(category_id)  ON DELETE CASCADE ON UPDATE CASCADE
-                                FOREIGN KEY(stock_id)     REFERENCES Product_Categories(stock_id)     ON DELETE CASCADE ON UPDATE CASCADE
+                                FOREIGN KEY(category_id)    REFERENCES Product_Categories(category_id)  ON DELETE CASCADE ON UPDATE CASCADE,
+                                FOREIGN KEY(stockStatus_id) REFERENCES Stock_Status(stockStatus_id)     ON DELETE CASCADE ON UPDATE CASCADE
                             )`
 
     database_viewAction(db, sql, res)

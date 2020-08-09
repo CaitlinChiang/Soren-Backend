@@ -8,15 +8,16 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO Orders SET ?'
 
     let category =  { 
-                        customer_name:    'Jeriel',
-                        customer_mobile:  '09988629001',
-                        customer_email:   'jerieltiu2012@gmail.com',
-                        customer_address: '139 Kalaw St.',
-                        city_id:          1,
-                        order_date:       '2020-08-04',
-                        payment_id:       1,
-                        order_timestamp:  '2020-08-04 05:45:11',
-                        status_id:        1
+                        customer_name:     'Hannah',
+                        customer_mobile:   '09988629001',
+                        customer_email:    'jerieltiu2012@gmail.com',
+                        customer_address:  'In a Rich Place',
+                        city_id:           7,
+                        order_date:        '2020-08-04',
+                        payment_id:        2,
+                        order_timestamp:   '2020-08-04 05:45:11',
+                        orderStatus_id:    1,
+                        paymentStatus_id:  2
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)

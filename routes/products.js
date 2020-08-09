@@ -8,10 +8,10 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO Products SET ?'
 
     let category =  { 
-                        category_id:   1, 
-                        product_name:  'Shirt2', 
-                        product_price: 600.00,
-                        stock_id:      1
+                        category_id:     2, 
+                        product_name:    'Shirt4', 
+                        product_price:   500.00,
+                        stockStatus_id:  1
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)

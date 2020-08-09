@@ -8,9 +8,9 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO Product_Details SET ?'
 
     let category =  { 
-                        product_id:      1, 
+                        product_id:      4, 
                         detail_size:     'L', 
-                        deatil_color:    'Black'
+                        deatil_color:    'White'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 // Update Product Detail Set
 router.get('/update/:id', (req, res) => {
     let sql   = `UPDATE Product_Details
-                 SET    detail_size = 'BPI Fund Transfer'
+                 SET    product_id  = 8
                  WHERE  detail_id   = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
