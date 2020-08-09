@@ -8,7 +8,7 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO City_Deliveries SET ?'
 
     let category =  { 
-                        city_name: 'SanJuan'
+                        city_name: 'San Juan'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
@@ -17,7 +17,8 @@ router.get('/add', (req, res) => {
 
 // View City
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM City_Deliveries`
+    let sql   = `SELECT * FROM City_Deliveries
+                 ORDER BY city_name`
 
     let query = database_viewAction(db, sql, res)
 })

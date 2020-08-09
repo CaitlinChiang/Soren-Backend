@@ -19,7 +19,8 @@ router.get('/add', (req, res) => {
 
 // View Product
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM Products`
+    let sql   = `SELECT * FROM Products
+                 ORDER BY product_id DESC`
 
     // let sql = `SELECT * FROM Product_Categories
     //            WHERE category_id = 1 OR category_id = 2
