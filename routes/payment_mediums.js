@@ -8,7 +8,7 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO Payment_Mediums SET ?'
 
     let category =  { 
-                        payment_method: 'BDO Fund Transfer'
+                        payment_method: 'GCash'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)

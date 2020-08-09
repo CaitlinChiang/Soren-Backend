@@ -3,47 +3,47 @@ const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
 
-// Create Payment Status
+// Create Stock Status
 router.get('/add', (req, res) => {
-    let sql      = 'INSERT INTO Payment_Status SET ?'
+    let sql      = 'INSERT INTO Stock_Status SET ?'
 
     let category =  { 
-                        paymentStatus_label: 'Paid'
+                        stockStatus_label: 'Out of Stock'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
 })
 
 
-// View Payment Status
+// View Stock Status
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM Payment_Status`
+    let sql   = `SELECT * FROM Stock_Status`
 
     let query = database_viewAction(db, sql, res)
 })
 
 router.get('/:id', (req, res) => {
-    let sql   = `SELECT * FROM Payment_Status
-                 WHERE paymentStatus_id = ${req.params.id}`
+    let sql   = `SELECT * FROM Stock_Status
+                 WHERE stockStatus_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
-// Update Payment Status
+// Update Stock Status
 router.get('/update/:id', (req, res) => {
-    let sql   = `UPDATE Payment_Status
-                 SET    paymentStatus_label = 'Remove'
-                 WHERE  paymentStatus_id    = ${req.params.id}`
+    let sql   = `UPDATE Stock_Status
+                 SET    stockStatus_label = 'BDO Fund Transfer'
+                 WHERE  stockStatus_id    = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
-// Delete Payment Status
+// Delete Stock Status
 router.get('/delete/:id', (req, res) => {
-    let sql   = `DELETE FROM Payment_Status 
-                 WHERE paymentStatus_id = ${req.params.id}`
+    let sql   = `DELETE FROM Stock_Status 
+                 WHERE stockStatus_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })

@@ -10,7 +10,8 @@ router.get('/add', (req, res) => {
     let category =  { 
                         category_id:   1, 
                         product_name:  'Shirt2', 
-                        product_price: 600.00 
+                        product_price: 600.00,
+                        stock_id:      1
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)

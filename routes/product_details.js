@@ -10,8 +10,7 @@ router.get('/add', (req, res) => {
     let category =  { 
                         product_id:      1, 
                         detail_size:     'L', 
-                        deatil_color:    'Black',
-                        available_stock: 5
+                        deatil_color:    'Black'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)

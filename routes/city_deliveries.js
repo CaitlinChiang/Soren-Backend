@@ -8,7 +8,7 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO City_Deliveries SET ?'
 
     let category =  { 
-                        city_name: 'San Juan'
+                        city_name: 'Valenzuela'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
 // Update City
 router.get('/update/:id', (req, res) => {
     let sql   = `UPDATE City_Deliveries
-                 SET    city_name = 'Marikina'
+                 SET    city_name = 'Pasig'
                  WHERE  city_id   = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)

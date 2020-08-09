@@ -8,7 +8,7 @@ router.get('/add', (req, res) => {
     let sql      = 'INSERT INTO Order_Status SET ?'
 
     let category =  { 
-                        orderStatus_label: 'Ready'
+                        orderStatus_label: 'Issues'
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
