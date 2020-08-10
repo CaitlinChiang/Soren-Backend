@@ -1,9 +1,13 @@
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
 
+
 const db = require('./sql_connection')
 require('./tools/visualizeData')()
+
+app.use(cors())
 
 app.listen('5000', () => console.log('Server on Port 5000'))
 
@@ -29,12 +33,15 @@ app.use('/table_paymentStatus', require('./tables/payment_status'))
 
 // Routing
 app.use('/products', require('./routes/products'))
-app.use('/product_categories', require('./routes/product_categories'))
 app.use('/product_details', require('./routes/product_details'))
+
+app.use('/product_categories', require('./routes/product_categories'))
 app.use('/stock_status', require('./routes/stock_status'))
 
-app.use('/orders', require('./routes/orders'))
 app.use('/city_deliveries', require('./routes/city_deliveries'))
-app.use('/order_status', require('./routes/order_status'))
 app.use('/payment_mediums', require('./routes/payment_mediums'))
+
+app.use('/orders', require('./routes/orders'))
+
+app.use('/order_status', require('./routes/order_status'))
 app.use('/payment_status', require('./routes/payment_status'))
