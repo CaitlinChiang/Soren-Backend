@@ -5,10 +5,12 @@ require('../tools/visualizeData')()
 
 // Create Payment Medium
 router.get('/add', (req, res) => {
+    const {newPaymentMethod} = req.query
+
     let sql      = 'INSERT INTO Payment_Mediums SET ?'
 
     let category =  { 
-                        payment_method: 'GCash'
+                        payment_method: newPaymentMethod
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
@@ -41,9 +43,9 @@ router.get('/update/:id', (req, res) => {
 
 
 // Delete Payment Medium
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:paymentMethod', (req, res) => {
     let sql   = `DELETE FROM Payment_Mediums 
-                 WHERE payment_id = ${req.params.id}`
+                 WHERE payment_method = "${req.params.paymentMethod}"`
 
     let query = database_viewAction(db, sql, res)
 })
