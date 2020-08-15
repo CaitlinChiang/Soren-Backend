@@ -5,12 +5,15 @@ require('../tools/visualizeData')()
 
 // Create Product Detail Set
 router.get('/add', (req, res) => {
+    const { productID, size, color } = req.query
+    // change to productName
+
     let sql      = 'INSERT INTO Product_Details SET ?'
 
     let category =  { 
-                        product_id:      4, 
-                        detail_size:     'L', 
-                        deatil_color:    'White'
+                        product_id:    productID, 
+                        detail_size:   size, 
+                        deatil_color:  color
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
@@ -33,19 +36,21 @@ router.get('/:id', (req, res) => {
 
 
 // Update Product Detail Set
-router.get('/update/:id', (req, res) => {
+router.get('/update', (req, res) => {
+    const { productID, size, color } = req.query
+    // change spelling of detail color
     let sql   = `UPDATE Product_Details
-                 SET    product_id  = 8
-                 WHERE  detail_id   = ${req.params.id}`
+                 SET    detail_size = "${size}",  deatil_color = ${color}
+                 WHERE  product_id  = ${productID}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
 // Delete Product Detail Set
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:productID', (req, res) => {
     let sql   = `DELETE FROM Product_Details 
-                 WHERE detail_id = ${req.params.id}`
+                 WHERE product_id = ${req.params.productID}`
 
     let query = database_viewAction(db, sql, res)
 })

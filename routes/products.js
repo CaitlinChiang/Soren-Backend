@@ -5,12 +5,14 @@ require('../tools/visualizeData')()
 
 // Create Product
 router.get('/add', (req, res) => {
+    const { productCategory, productName, productPrice } = req.query
+
     let sql      = 'INSERT INTO Products SET ?'
 
     let category =  { 
-                        category_id:     2, 
-                        product_name:    'Shirt4', 
-                        product_price:   500.00,
+                        category_id:     productCategory, 
+                        product_name:    productName,
+                        product_price:   productPrice,
                         stockStatus_id:  1
                     }
 
@@ -44,9 +46,11 @@ router.get('/:id', (req, res) => {
 
 // Update Product
 router.get('/update/:id', (req, res) => {
+    const { categoryID, productName, productPrice, stockStatus } = req.query
+
     let sql   = `UPDATE Products
-                 SET    product_name = 'BPI Fund Transfer'
-                 WHERE  product_id   = ${req.params.id}`
+                 SET    category_id = ${categoryID},  product_name = "${productName}",  product_price = ${productPrice},  stockStatus_id = ${stockStatus}
+                 WHERE  product_id  = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })

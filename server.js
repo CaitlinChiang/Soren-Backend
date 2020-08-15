@@ -22,6 +22,9 @@ app.get('/viewTables', (req, res) => {
 app.use('/table_products', require('./tables/products'))
 app.use('/table_productCategories', require('./tables/product_categories'))
 app.use('/table_productDetails', require('./tables/product_details'))
+
+app.use('/table_productSizes', require('./tables/product_sizes'))
+app.use('/table_productColors', require('./tables/product_colors'))
 app.use('/table_stockStatus', require('./tables/stock_status'))
 
 app.use('/table_orders', require('./tables/orders'))
@@ -36,6 +39,8 @@ app.use('/products', require('./routes/products'))
 app.use('/product_details', require('./routes/product_details'))
 
 app.use('/product_categories', require('./routes/product_categories'))
+app.use('/product_sizes', require('./routes/product_sizes'))
+app.use('/product_colors', require('./routes/product_colors'))
 app.use('/stock_status', require('./routes/stock_status'))
 
 app.use('/city_deliveries', require('./routes/city_deliveries'))

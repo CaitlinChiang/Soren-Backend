@@ -45,7 +45,7 @@ router.get('/update/:id', (req, res) => {
     const { orderStatus, paymentStatus } = req.query
 
     let sql   = `UPDATE Orders
-                 SET    orderStatus_id = ${orderStatus},  paymentStatus_id = ${paymentStatus}, order_timestamp = order_timestamp
+                 SET    orderStatus_id = ${orderStatus},  paymentStatus_id = ${paymentStatus},  order_timestamp = order_timestamp
                  WHERE  order_id  = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
