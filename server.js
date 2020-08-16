@@ -28,6 +28,7 @@ app.use('/table_productColors', require('./tables/product_colors'))
 app.use('/table_stockStatus', require('./tables/stock_status'))
 
 app.use('/table_orders', require('./tables/orders'))
+app.use('/table_orderItems', require('./tables/order_items'))
 app.use('/table_cityDeliveries', require('./tables/city_deliveries'))
 app.use('/table_orderStatus', require('./tables/order_status'))
 app.use('/table_paymentMediums', require('./tables/payment_mediums'))
@@ -47,6 +48,7 @@ app.use('/city_deliveries', require('./routes/city_deliveries'))
 app.use('/payment_mediums', require('./routes/payment_mediums'))
 
 app.use('/orders', require('./routes/orders'))
+app.use('/order_items', require('./routes/order_items'))
 
 app.use('/order_status', require('./routes/order_status'))
 app.use('/payment_status', require('./routes/payment_status'))

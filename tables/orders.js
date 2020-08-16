@@ -5,6 +5,7 @@ require('../tools/visualizeData')()
 
 // Create Orders Table
 router.get('/add', (req, res) => {
+    //put limit to int variables ex. int(5)
     let sql = `CREATE TABLE Orders( 
                                 order_id          INT           AUTO_INCREMENT,
                                 customer_name     VARCHAR(100)  NOT NULL,
@@ -14,6 +15,7 @@ router.get('/add', (req, res) => {
                                 city_id           INT           NOT NULL,
                                 order_date        DATE          NOT NULL,
                                 payment_id        INT           NOT NULL,
+                                final_price       INT           NOT NULL,
                                 order_timestamp   TIMESTAMP     NOT NULL,
                                 orderStatus_id    INT           NOT NULL,
                                 paymentStatus_id  INT           NOT NULL,

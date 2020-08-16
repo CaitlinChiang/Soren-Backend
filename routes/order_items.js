@@ -3,47 +3,40 @@ const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
 
-// Create Order
+// Create Order Item
 router.get('/add', (req, res) => {
-    //add final price
-    const { name, mobile, email, address, city, orderDate, paymentMethod, timestamp, orderStatus, paymentStatus } = req.query
-    
-    let sql      = 'INSERT INTO Orders SET ?'
+    const { orderID, productID, color, size } = req.query
+
+    let sql      = 'INSERT INTO Order_Items SET ?'
 
     let category =  { 
-                        customer_name:     name,
-                        customer_mobile:   mobile,
-                        customer_email:    email,
-                        customer_address:  address,
-                        city_id:           city,
-                        order_date:        orderDate,
-                        payment_id:        paymentMethod,
-                        order_timestamp:   timestamp,
-                        orderStatus_id:    orderStatus,
-                        paymentStatus_id:  paymentStatus
+                        order_id:      orderID,
+                        product_id:    productID,
+                        product_color: color,
+                        product_size:  size
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
 })
 
 
-// View Order
+// View Order Items
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM Orders
+    let sql   = `SELECT * FROM Order_Items
                  ORDER BY order_id DESC`
 
     let query = database_viewAction(db, sql, res)
 })
 
 router.get('/:id', (req, res) => {
-    let sql   = `SELECT * FROM Orders
+    let sql   = `SELECT * FROM Order_Items
                  WHERE order_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
 
 
-// Update Order
+// Update Order Item
 router.get('/update/:id', (req, res) => {
     const { orderStatus, paymentStatus } = req.query
 
@@ -55,9 +48,9 @@ router.get('/update/:id', (req, res) => {
 })
 
 
-// Delete Order
+// Delete Order Item
 router.get('/delete/:id', (req, res) => {
-    let sql   = `DELETE FROM Orders 
+    let sql   = `DELETE FROM Order_Items 
                  WHERE order_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
