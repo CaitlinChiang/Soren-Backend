@@ -2,53 +2,31 @@ const router = require("express").Router()
 const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
-
 // Create City
 router.get('/add', (req, res) => {
-    const { newCity } = req.query
+    const { city } = req.query
 
-    let sql      = 'INSERT INTO City_Deliveries SET ?'
+    let sql = 'INSERT INTO city_deliveries SET ?'
 
     let category =  { 
-                        city_name: newCity
+                        city_name: city
                     }
 
-    let query    = databaseData_getQuery(db, sql, category, res)
+    let query = databaseData_getQuery(db, sql, category, res)
 })
-
 
 // View City
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM City_Deliveries
-                 ORDER BY city_name`
+    let sql = `SELECT * FROM city_deliveries
+               ORDER BY city_name`
 
     let query = database_viewAction(db, sql, res)
 })
-
-router.get('/:id', (req, res) => {
-    let sql   = `SELECT * FROM City_Deliveries
-                 WHERE city_id = ${req.params.id}`
-
-    let query = database_viewAction(db, sql, res)
-})
-
-
-// Update City
-router.get('/update/:id', (req, res) => {
-    let sql   = `UPDATE City_Deliveries
-                 SET    city_name = 'Pasig'
-                 WHERE  city_id   = ${req.params.id}`
-
-    let query = database_viewAction(db, sql, res)
-})
-
 
 // Delete City
 router.get('/delete/:city', (req, res) => {
-    // const { removeCity } = req.query
-
-    let sql   = `DELETE FROM City_Deliveries 
-                 WHERE city_name = "${req.params.city}"`
+    let sql = `DELETE FROM city_deliveries 
+               WHERE city_name = "${req.params.city}"`
 
     let query = database_viewAction(db, sql, res)
 })

@@ -2,50 +2,30 @@ const router = require("express").Router()
 const db     = require('../sql_connection')
 require('../tools/visualizeData')()
 
-
 // Create Payment Medium
 router.get('/add', (req, res) => {
-    const {newPaymentMethod} = req.query
+    const { paymentMethod } = req.query
 
-    let sql      = 'INSERT INTO Payment_Mediums SET ?'
+    let sql = 'INSERT INTO payment_mediums SET ?'
 
     let category =  { 
-                        payment_method: newPaymentMethod
+                        paymentMethod_name: paymentMethod
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
 })
 
-
 // View Payment Medium
 router.get('/', (req, res) => {
-    let sql   = `SELECT * FROM Payment_Mediums`
+    let sql = `SELECT * FROM payment_mediums`
 
     let query = database_viewAction(db, sql, res)
 })
-
-router.get('/:id', (req, res) => {
-    let sql   = `SELECT * FROM Payment_Mediums
-                 WHERE payment_id = ${req.params.id}`
-
-    let query = database_viewAction(db, sql, res)
-})
-
-
-// Update Payment Medium
-router.get('/update/:id', (req, res) => {
-    let sql   = `UPDATE Payment_Mediums
-                 SET    payment_method = 'BDO Fund Transfer'
-                 WHERE  payment_id     = ${req.params.id}`
-
-    let query = database_viewAction(db, sql, res)
-})
-
 
 // Delete Payment Medium
 router.get('/delete/:paymentMethod', (req, res) => {
-    let sql   = `DELETE FROM Payment_Mediums 
-                 WHERE payment_method = "${req.params.paymentMethod}"`
+    let sql = `DELETE FROM payment_mediums 
+               WHERE paymentMethod_name = "${req.params.paymentMethod}"`
 
     let query = database_viewAction(db, sql, res)
 })

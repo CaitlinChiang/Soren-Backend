@@ -3,8 +3,8 @@ const mysql = require('mysql')
 const db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '12345',
-    database : 'Soren'
+    password : 'mysql051119-862282',
+    database : 'soren'
 })
 
 db.connect((err) => {
@@ -13,9 +13,3 @@ db.connect((err) => {
 })
 
 module.exports = db
-
-
-// app.get('/create_db', (req, res) => {
-//     let sql = 'CREATE DATABASE *Insert Database Name*'
-//     database_viewAction(sql, res)
-// })
