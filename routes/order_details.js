@@ -4,7 +4,7 @@ require('../tools/visualizeData')()
 
 // Create Order Detail
 router.get('/add', (req, res) => {
-    const { name, mobile, email, address, city, orderDate, paymentMethod, timestamp, orderStatus, paymentStatus } = req.query
+    const { name, mobile, email, address, city, orderDate, paymentMethod, timestamp } = req.query
     
     let sql = 'INSERT INTO order_details SET ?'
 
@@ -17,8 +17,8 @@ router.get('/add', (req, res) => {
                         city_id: city,
                         paymentMethod_id: paymentMethod,
                         delivery_date: orderDate,
-                        orderStatus_id: orderStatus,
-                        paymentStatus_id: paymentStatus
+                        orderStatus_id: 1,
+                        paymentStatus_id: 1
                     }
 
     let query = databaseData_getQuery(db, sql, category, res)

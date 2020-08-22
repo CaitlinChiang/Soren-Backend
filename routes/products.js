@@ -42,7 +42,7 @@ router.get('/update/:id', (req, res) => {
                 SET category_id = ${product_category},  
                     product_name = "${name}", 
                     product_price = ${price},
-                    stockStatus_id = ${stock}
+                    stock_id = ${stock}
 
                 WHERE product_id = ${req.params.id}`
 

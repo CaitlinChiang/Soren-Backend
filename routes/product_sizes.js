@@ -9,7 +9,7 @@ router.get('/add', (req, res) => {
     let sql = 'INSERT INTO product_sizes SET ?'
 
     let category =  { 
-                        size_label: size 
+                        size_name: size 
                     }
 
     let query = databaseData_getQuery(db, sql, category, res)
