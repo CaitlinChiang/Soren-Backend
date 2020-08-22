@@ -4,7 +4,7 @@ require('../tools/visualizeData')()
 
 // Create Order Detail
 router.get('/add', (req, res) => {
-    const { name, mobile, email, address, city, orderDate, paymentMethod, timestamp } = req.query
+    const { name, mobile, email, address, city, orderDate, price, paymentMethod, timestamp } = req.query
     
     let sql = 'INSERT INTO order_details SET ?'
 
@@ -17,6 +17,7 @@ router.get('/add', (req, res) => {
                         city_id: city,
                         paymentMethod_id: paymentMethod,
                         delivery_date: orderDate,
+                        price: price,
                         orderStatus_id: 1,
                         paymentStatus_id: 1
                     }
@@ -27,7 +28,7 @@ router.get('/add', (req, res) => {
 // View Order Detail
 router.get('/', (req, res) => {
     let sql = `SELECT * FROM order_details
-                 ORDER BY order_id DESC`
+                 ORDER BY orderDetail_id DESC`
 
     let query = database_viewAction(db, sql, res)
 })
@@ -42,7 +43,7 @@ router.get('/update/:id', (req, res) => {
                     paymentStatus_id = ${paymentStatus},
                     timestamp = timestamp
                  
-                WHERE order_id  = ${req.params.id}`
+                WHERE orderDetail_id  = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })
@@ -50,7 +51,7 @@ router.get('/update/:id', (req, res) => {
 // Delete Order Detail
 router.get('/delete/:id', (req, res) => {
     let sql   = `DELETE FROM order_details 
-                 WHERE order_id = ${req.params.id}`
+                 WHERE orderDetail_id = ${req.params.id}`
 
     let query = database_viewAction(db, sql, res)
 })

@@ -26,13 +26,6 @@ router.get('/', (req, res) => {
     let query = database_viewAction(db, sql, res)
 })
 
-router.get('/:id', (req, res) => {
-    let sql = `SELECT * FROM products
-               WHERE product_id = ${req.params.id}`
-
-    let query = database_viewAction(db, sql, res)
-})
-
 // Update Product
 router.get('/update/:id', (req, res) => {
     const { product_category, name, price, stock } = req.query

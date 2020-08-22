@@ -21,7 +21,7 @@ router.get('/add', (req, res) => {
 // View Order Item
 router.get('/', (req, res) => {
     let sql = `SELECT * FROM order_items
-                 ORDER BY order_id DESC`
+                 ORDER BY orderItem_id DESC`
 
     let query = database_viewAction(db, sql, res)
 })
