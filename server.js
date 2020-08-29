@@ -24,3 +24,6 @@ app.use('/status_order', require('./routes/status_order'))
 app.use('/status_payment', require('./routes/status_payment'))
 app.use('/city_deliveries', require('./routes/city_deliveries'))
 app.use('/payment_mediums', require('./routes/payment_mediums'))
+
+// Send Emails
+const mail = require('./email_receipt')
