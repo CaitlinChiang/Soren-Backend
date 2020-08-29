@@ -4,7 +4,7 @@ require('../tools/visualizeData')()
 
 // Create Order Item
 router.get('/add', (req, res) => {
-    const { orderDetail_id, name, color, size } = req.query
+    const { orderDetail_id, name, color, size, quantity } = req.query
 
     let sql = 'INSERT INTO order_items SET ?'
 
@@ -13,6 +13,7 @@ router.get('/add', (req, res) => {
                         product_name: name,
                         product_color: color,
                         product_size: size,
+                        product_quantity: quantity
                     }
 
     let query = databaseData_getQuery(db, sql, category, res)

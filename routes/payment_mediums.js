@@ -4,12 +4,13 @@ require('../tools/visualizeData')()
 
 // Create Payment Medium
 router.get('/add', (req, res) => {
-    const { paymentMethod } = req.query
+    const { paymentMethod, paymentMethod_account } = req.query
 
     let sql = 'INSERT INTO payment_mediums SET ?'
 
     let category =  { 
-                        paymentMethod_name: paymentMethod
+                        paymentMethod_name: paymentMethod,
+                        paymentMethod_account: paymentMethod_account
                     }
 
     let query    = databaseData_getQuery(db, sql, category, res)
