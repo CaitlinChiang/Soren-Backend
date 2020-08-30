@@ -1,10 +1,5 @@
 const express = require('express')
-
 const cors = require('cors')
-
-const db = require('./sql_connection')
-
-require('./tools/visualizeData')()
 
 const app = express()
 
@@ -26,4 +21,4 @@ app.use('/city_deliveries', require('./routes/city_deliveries'))
 app.use('/payment_mediums', require('./routes/payment_mediums'))
 
 // Send Emails
-const mail = require('./email_receipt')
+app.use('/receipt', require('./email_receipt'))
