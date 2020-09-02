@@ -31,5 +31,4 @@ router.get('/delete/:city', (req, res) => {
     let query = database_viewAction(db, sql, res)
 })
 
-
 module.exports = router

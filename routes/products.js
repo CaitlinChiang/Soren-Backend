@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const db     = require('../sql_connection')
+const db = require('../sql_connection')
 require('../tools/visualizeData')()
 
 // Create Product
@@ -49,6 +49,5 @@ router.get('/delete/:id', (req, res) => {
 
     let query = database_viewAction(db, sql, res)
 })
-
 
 module.exports = router

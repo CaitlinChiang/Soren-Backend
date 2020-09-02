@@ -30,5 +30,4 @@ router.get('/delete/:size', (req, res) => {
     let query = database_viewAction(db, sql, res)
 })
 
-
 module.exports = router
