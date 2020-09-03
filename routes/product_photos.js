@@ -24,4 +24,12 @@ router.get('/', (req, res) => {
     let query = database_viewAction(db, sql, res)
 })
 
+// Delete Product Photo Url
+router.get('/delete/:product_id', (req, res) => {
+    let sql = `DELETE FROM product_photos
+               WHERE product_id = ${req.params.product_id}`
+
+    let query = database_viewAction(db, sql, res)
+})
+
 module.exports = router
