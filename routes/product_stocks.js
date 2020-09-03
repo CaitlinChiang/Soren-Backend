@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const db     = require('../sql_connection')
+const db = require('../sql_connection')
 require('../tools/visualizeData')()
 
 // View Stock
